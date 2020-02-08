@@ -85,6 +85,8 @@
                 </div>
                 <div class="links">
                     <a href="{{route('show.action')}}">Our Action</a>
+                    <a href="student">Students</a>
+                    <a href="{{route('show.subject')}}">Subject</a>
                     <a href="{{route('show.about')}}">About Us</a>
                     <a href="{{route('show.join')}}">Join Us</a>
                     <a href="{{route('show.news')}}">New</a>

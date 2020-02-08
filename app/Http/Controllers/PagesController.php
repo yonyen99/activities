@@ -34,10 +34,9 @@ class PagesController extends Controller
             '1'=>array('id' => 2,'name' => 'Maly','email' => 'maly@example.org'),
             '2'=>array('id' => 3,'name' => 'Samphas','email' =>'samphas@example.org'),
             '3'=>array('id' => 4,'name' => 'Donat','email' => 'donat@example.org')
-          
-           
+
             );
      
-        return view('pages.customer',compact('arrayNames'));
+        return view('pages.customerr',compact('arrayNames'));
     }
 }

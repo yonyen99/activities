@@ -85,4 +85,24 @@ Route::get('/about','PagesController@about')->name('show.about');
 Route::get('/join','PagesController@join')->name('show.join');
 Route::get('/news','PagesController@news')->name('show.news');
 Route::get('/contact','PagesController@contact')->name('show.contact');
-Route::get('/customer','PagesController@showCustomer')->name('show.customer');
+
+Route::get('/customer','PagesController@showCustomer');
+Route::get('/student','StudentController@showStudent');
+Route::get('/subject','SubjectsController@showSubject')->name('show.subject');
+Route::get('/student/{name}','StudentController@searchStudent');
+//uri student
+Route::get('/student','StudentController@getStudents');
+// Route::post('insertStudent','StudentController@InsertStudent');
+//add the student
+Route::get('/showFormStudent','StudentController@showFormStudent');
+Route::post('save','StudentController@saveStudent');
+//edit student
+Route::get('/showEditStudent/{id}','StudentController@showEdit')->name('showedit');
+Route::patch('/update/{id}','StudentController@updateStudent')->name('update');
+
+//delete student
+Route::get('/delete{id}','StudentController@deleteStudent')->name('deleteStudent');
+
+Route:: resource('studentsNew','StudentControllerNewVersion');
+
+

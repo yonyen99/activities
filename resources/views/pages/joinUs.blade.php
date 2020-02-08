@@ -1,4 +1,9 @@
-<title>{{$join}}</title>
+@extends('pages.Template')
+@section('title')
+    contact
+@endsection
+@section('body')
 <h2>Join Us</h2>
 <p>We rely on the talents and dedicated human resources to develop our actions and
 sustain our activities.</p>
+@endsection
