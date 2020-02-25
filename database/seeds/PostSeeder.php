@@ -11,13 +11,9 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-        for($j=0;$j<10;$j++){
-         DB::table('students')->insert([
-             'FirstName'=>$faker->firstName,
-             'LastName' =>$faker->lastName,
-           
-         ]);
-        }
+        DB:table('posts')->insert([
+            'title' =>"hello",
+            'body' =>"I never do ..."
+        ]);
     }
 }

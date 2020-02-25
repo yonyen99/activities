@@ -106,3 +106,20 @@ Route::get('/delete{id}','StudentController@deleteStudent')->name('deleteStudent
 Route:: resource('studentsNew','StudentControllerNewVersion');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/addProfile', 'UserController@addProfile');
+Route::get('/showProfile', 'UserController@showProfile');
+Route::get('/showUserName', 'ProfileController@showUserName');
+Route::get('/update', 'UserController@update');
+Route::get('/profileUpdate', 'ProfileController@profileUpdate');
+Route::get('/addPro', 'ProfileController@addPro');
+
+Route::get('/editprofile/{id}', 'UserController@editprofile')->name('editprofile');
+Route::patch('/updateprofile/{id}', 'UserController@updateprofile')->name('updateprofile');
+Route::get('/deleteProfile/{id}', 'UserController@deleteProfile')->name('deleteProfile');
+Route::get('/index', 'UserController@index')->name('index');
+Route::post('/store', 'UserController@store')->name('store');
+Route::get('/show', 'UserController@show')->name('show');
