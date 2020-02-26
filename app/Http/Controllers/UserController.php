@@ -67,11 +67,7 @@ class UserController extends Controller
         return "success";
     }
 
-    public function showProfile()
-    {
-        $user = User::all();
-        return view('showUser', compact('user'));
-    }
+   
 
 
     public function update()
@@ -88,12 +84,17 @@ class UserController extends Controller
         return "was update";
     }
 
+    public function showProfile()
+    {
+        $user = User::all();
+        return view('challeng1.showUser', compact('user'));
+    }
 
     //edit
     public function editprofile($id)
     {
         $user = User::find($id);
-        return view('form.edit', compact('user'));
+        return view('challeng1.edit', compact('user'));
     }
 
     // update 
@@ -109,17 +110,12 @@ class UserController extends Controller
         return redirect('showProfile');
     }
 
-    public function deleteProfile($id){
-        $user = User::find($id);
-        $user->delete([
-            'name','email'
-        ]);
-        $user->profile()->delete([
-            'phone','address'
-        ]);
-        $user->save();
-        return redirect('showProfile');
-    }
+   public function deleteProfile($id){
+    $user = User::find($id);
+    $user->delete();
+    // $user->profile->delete();
+    return redirect('showProfile');
+   }
 
 
     public function index()
@@ -129,10 +125,12 @@ class UserController extends Controller
         return view('post.form', compact('user'));
     }
 
+
+
     public function store(Request $request)
     {
         //
-        $User = User::find(1);
+        $User = User::find(5);
         $post = new \App\Post();
        $post->title = $request->get('title');
        $post->body= $request->get('body');
