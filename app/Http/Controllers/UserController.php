@@ -2,87 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\Post;
-use App\Profile;
+use App\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function addProfile()
-    {
-        // $User = User::find(3);
-        // $Profile = new Profile();
-        // $Profile->phone="999999999";
-        // $Profile->address="phonm phenh";
-        // $Profile ->user_id = $User->id;
-        // $Profile->save();
-
-        //one way 
-        // $User = User::find(1);
-        // $Profile = Profile::Create(
-        //     [
-        //         'user_id'=>$User->id,
-        //         'phone'=>'99999999',
-        //         'address'=>'phnom penh'
-        //     ]
-        // );
-        // one way
-        // $User = User::find(1);
-        // $Profile = new Profile([
-        //     'phone'=>'999999',
-        //     'address'=>'aaaaa'
-        // ]);
-        // $User->profile()->save($Profile);
-
-        // one way
-        // $User = User::find(1);
-        // $Profile = new Profile([
-        //     'phone'=>'999999',
-        //     'address'=>'aaaaa'
-        // ]);
-        // $User->profile()->save($Profile);
-
-        // $Users = User::find(2);
-        // $Profiles = new Profile();
-        // $Profiles->phone="88888888";
-        // $Profiles->address="Battambang";
-        // $Profiles ->user_id = $Users->id;
-        // $Profiles->save();
-
-        // one way
-        // $Users = User::find(2);
-        // $Profile = Profile::created([
-        //     'user_id'=>$Users->id,
-        //     'phone'=>'888888',
-        //     'address'=>'Kompong thom'
-        // ]);
-
-        $user = User::find(5);
-        $user->profile()->create([
-            'phone' => "999999",
-            'address' => "I live in canada"
-        ]);
-
-        return "success";
-    }
-
    
 
-
-    public function update()
-    {
-        $User = User::find(2);
-        $User->update([
-            'name' => 'Rathi',
-            'email' => 'Thi@gmail.com'
-        ]);
-        $User->profile()->update([
-            'phone' => '000000000',
-            'address' => 'I live in kpt'
-        ]);
-        return "was update";
-    }
+  
 
     public function showProfile()
     {
@@ -107,44 +36,81 @@ class UserController extends Controller
         $user->profile->address = $request->get('address');
         $user->profile->phone = $request->get('phone');
         $user->save();
+        $user->profile->save();
         return redirect('showProfile');
     }
 
    public function deleteProfile($id){
     $user = User::find($id);
     $user->delete();
-    // $user->profile->delete();
     return redirect('showProfile');
    }
 
 
-    public function index()
-    {
-        //
-        $user = User::all();
-        return view('post.form', compact('user'));
-    }
+   public function showpostform(){
+    $user = User::all();
+    return view('challeng2.post', compact('user'));
+   }
 
+//    public function add($id,Request $request)
+//    {
+//     $user = User::find($id);
+//         $post = new \App\Post();
+//       $post->title = $request->get('title');
+//       $post->body= $request->get('body');
+//     //   $post->user_id = $user->id;
+//       $post ->user_id = $user->id;
+//       $post->save();
+//       $user->save();
+//         return redirect('home');
+//    }
 
-
-    public function store(Request $request)
-    {
-        //
-        $User = User::find(5);
+public function addpost(Request $request)
+   {
+    $user = User::find(auth::id());
         $post = new \App\Post();
-       $post->title = $request->get('title');
-       $post->body= $request->get('body');
-       $post->user_id = $User->id;
-       $post->save();
-         return redirect('home');
-    }
+      $post->title = $request->get('title');
+      $post->body= $request->get('body');
+      $post ->user_id = $user->id;
+      $post->save();
+      
+        return redirect('home');
+   }
 
-    public function show()
-    {
-        //
-        $user=User::find(1);
-        return view('post.show', compact('user'));
-    }
 
+   public function showpost()
+   {
+       $posts = Post::all();
+       return view('challeng2.showpost', compact('posts'));
+   }
+
+   public function showpostedit($id){
+    $post = Post::find($id);
+    return view('challeng2.showedit', compact('post'));
+   }
+
+   public function updatepost($id, Request $request)
+   {
+
+        $post = Post::find($id);
+        $post->title = $request->get('title');
+        $post->body = $request->get('body');
+        $post->save();
+        return redirect('showpost');
+    //    $user->name = $request->get('name');
+    //    $user->email = $request->get('email');
+    //    $user->profile->address = $request->get('address');
+    //    $user->profile->phone = $request->get('phone');
+    //    $user->save();
+    //    $user->profile->save();
+    //    return redirect('showProfile');
+   }
+
+   public function deletepost($id){
+    $post = Post::find($id);
+    $post ->delete();
+    return redirect('showpost');
+
+   }
     
 }

@@ -5,11 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">
-                    <a href="showpostform">New Post</a>
-                    <a href="showpost" class="float-right">All posts</a>
-                    
-                </div>
+                <div class="card-header">You are login as:</div>
 
                 <div class="card-body">
                     @if (session('status'))

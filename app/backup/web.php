@@ -124,10 +124,6 @@ Route::patch('/updateprofile/{id}', 'UserController@updateprofile')->name('updat
 Route::get('/deleteProfile/{id}', 'UserController@deleteProfile')->name('deleteProfile');
 
 
-Route::get('/showpostform', 'UserController@showpostform')->name('showpostform');
-Route::post('/addpost/{id}', 'UserController@addpost')->name('addpost');
-Route::get('/showpost', 'UserController@showpost')->name('showpost');
-Route::get('/showpostedit/{id}', 'UserController@showpostedit')->name('showpostedit');
-Route::patch('/updatepost/{id}', 'UserController@updatepost')->name('updatepost');
-Route::get('/deletepost/{id}', 'UserController@deletepost')->name('deletepost');
-
+Route::get('/index', 'UserController@index')->name('index');
+Route::post('/store', 'UserController@store')->name('store');
+Route::get('/show', 'UserController@show')->name('show');
